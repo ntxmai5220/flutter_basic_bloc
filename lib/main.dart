@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       home: BlocProvider(
-        create: (context) => ExampleBloc()..add(LoadingInitial()),
+        create: (context) => ExampleBloc(),
         child: const Example(),
       ),
     );

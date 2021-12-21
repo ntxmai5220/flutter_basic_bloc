@@ -21,24 +21,22 @@ class Example extends StatelessWidget {
     return Scaffold(
       body: BlocBuilder<ExampleBloc, ExampleState>(
         builder: (context, state) {
-          if (state is HomeLoaded) {
-            return Center(child: widgets[0]);
-          } else if (state is FavoriteLoaded) {
-            return Center(child: widgets[1]);
-          } else if (state is Loading) {
-            return const Center(child: CircularProgressIndicator());
-          } else if (state is Error) {
-            return const Center(
-                child: Text('Error',
-                    style: TextStyle(fontSize: 30, color: Colors.red)));
+          if (state is ExampleInitial) {
+            return Center(child: widgets[state.index]);
+            // } else if (state is Loading) {
+            //   return const Center(child: CircularProgressIndicator());
+            // } else if (state is Error) {
+            //   return const Center(
+            //       child: Text('Error',
+            //           style: TextStyle(fontSize: 30, color: Colors.red)));
           }
-          return Container();
+          return const Center(child: CircularProgressIndicator());
         },
       ),
       bottomNavigationBar: BlocBuilder<ExampleBloc, ExampleState>(
         builder: (context, state) {
           return BottomNavigationBar(
-            currentIndex: BlocProvider.of<ExampleBloc>(context).currentIndex,
+            currentIndex: (state as ExampleInitial).index,
             onTap: (int index) {
               BlocProvider.of<ExampleBloc>(context).add(OnChangeTab(index));
             },

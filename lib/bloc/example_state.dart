@@ -1,14 +1,22 @@
 part of 'example_bloc.dart';
 
 @immutable
-abstract class ExampleState {}
+abstract class ExampleState {
+  final int index;
 
-class ExampleInitial extends ExampleState {}
+  const ExampleState(this.index);
+}
 
-class HomeLoaded extends ExampleState {}
+class ExampleInitial extends ExampleState {
+ 
 
-class FavoriteLoaded extends ExampleState {}
+  const ExampleInitial(index) : super(index);
+}
 
-class Loading extends ExampleState{}
+// class HomeLoaded extends ExampleState {}
 
-class Error extends ExampleState{}
+// class FavoriteLoaded extends ExampleState {}
+
+// class Loading extends ExampleState {}
+
+// class Error extends ExampleState {}
